@@ -14,7 +14,7 @@ class PassagerStandardTest {
 	PassagerStandard debout;
 	PassagerStandard assis;
 	PassagerStandard dehors;
-	Transport t;
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		debout = new PassagerStandard("Michel", 4);
@@ -78,13 +78,20 @@ class PassagerStandardTest {
 	}
 	
 	@Test
+	void testNouvelArret() {
+		fail("Not implemented yet");
+	}
+	
+	@Test
+	void testMonterDans() {
+		fail("Not implemented yet");
+	}
+	
+	@Test
 	void testToString() {
 		assertEquals("Michel debout",debout.toString());
 		assertEquals("Suzie assis",assis.toString());
 		assertEquals("Luc dehors",dehors.toString());
 	}
 	
-	
-	
-
 }
