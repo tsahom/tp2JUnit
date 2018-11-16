@@ -2,49 +2,62 @@ package tec;
 
 public class Autobus implements Bus, Transport{
 	
+	private JaugeNaturel plcAss;
+	private JaugeNaturel plcDeb;
+	
 	public Autobus(int plcAss,int plcDeb) {
-		
+		this.plcAss = new JaugeNaturel(0, plcAss, 0);
+		this.plcDeb = new JaugeNaturel(0, plcDeb, 0);
 	}
 
 	@Override
 	public boolean aPlaceAssise() {
-		// TODO Auto-generated method stub
-		return false;
+		return !this.plcAss.estRouge();
 	}
 
 	@Override
 	public boolean aPlaceDebout() {
-		// TODO Auto-generated method stub
-		return false;
+		return !this.plcDeb.estRouge();
 	}
 
 	@Override
 	public void demanderPlaceAssise(Passager p) {
-		// TODO Auto-generated method stub
-		
+		if(this.aPlaceAssise()) {
+			this.plcAss.incrementer();
+			p.accepterPlaceAssise();
+		}
 	}
 
 	@Override
 	public void demanderPlaceDebout(Passager p) {
-		// TODO Auto-generated method stub
-		
+		if(this.aPlaceDebout()) {
+			this.plcDeb.incrementer();
+			p.accepterPlaceDebout();
+		}
 	}
 
 	@Override
 	public void demanderChangerEnDebout(Passager p) {
-		// TODO Auto-generated method stub
-		
+		if(this.aPlaceDebout()) {
+			this.plcDeb.incrementer();
+			this.plcAss.decrementer();
+			p.accepterPlaceDebout();
+		}
+
 	}
 
 	@Override
 	public void demanderChangerEnAssis(Passager p) {
-		// TODO Auto-generated method stub
-		
+		if(this.aPlaceAssise()) {
+			this.plcAss.incrementer();
+			this.plcDeb.decrementer();
+			p.accepterPlaceAssise();
+		}
 	}
 
 	@Override
 	public void demanderSortie(Passager p) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
