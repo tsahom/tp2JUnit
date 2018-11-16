@@ -58,13 +58,16 @@ public class Autobus implements Bus, Transport{
 	@Override
 	public void demanderSortie(Passager p) {
 
-		
 	}
 
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public String toString() {
+		return "Place assise :" + this.plcAss.toString() + "\n Place debout :" + this.plcDeb.toString();
 	}
 
 }
