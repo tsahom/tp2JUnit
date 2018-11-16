@@ -6,13 +6,13 @@ public class PassagerStandard implements Passager, Usager{
 	
 	private String nom;
 	private int arret;
-	private EtatPassager.Etat et;
+	private EtatPassager et;
 
 	public PassagerStandard(String nom,int arret) {
 		// TODO Auto-generated constructor stub
 		this.nom=nom;
 		this.arret=arret;
-		et = Etat.DEHORS;
+		et = new EtatPassager(Etat.DEHORS);
 	}
 
 	@Override
@@ -22,42 +22,33 @@ public class PassagerStandard implements Passager, Usager{
 	}
 
 	@Override
-	public boolean estDehors() {
-		if(et==Etat.DEHORS) {
-			return true;
-		}
-		return false;
+	public boolean estDehors() {	
+		return et.estExterieur();
 	}
 
 	@Override
 	public boolean estAssis() {
-		if(et==Etat.ASSIS) {
-			return true;
-		}
-		return false;
+		return et.estAssis();
 	}
 
 	@Override
 	public boolean estDebout() {
-		if(et==Etat.DEBOUT) {
-			return true;
-		}
-		return false;
+		return et.estDebout();
 	}
 
 	@Override
 	public void accepterSortie() {
-		et=Etat.DEHORS;
+		et = new EtatPassager(Etat.DEHORS);
 	}
 
 	@Override
 	public void accepterPlaceAssise() {
-		et=Etat.ASSIS;
+		et = new EtatPassager(Etat.ASSIS);
 	}
 
 	@Override
 	public void accepterPlaceDebout() {
-		et=Etat.DEBOUT;
+		et = new EtatPassager(Etat.DEBOUT);
 	}
 
 	@Override
@@ -75,16 +66,15 @@ public class PassagerStandard implements Passager, Usager{
 	@Override
 	public String toString() {
 		String etat ="";
-		switch(et) {
-		case ASSIS :
+		
+		if(et.estAssis()) {
 			etat = "assis";
-			break;
-		case DEBOUT :
+		}
+		if(et.estDebout()) {
 			etat = "debout";
-			break;
-		case DEHORS :
+		}
+		if(et.estExterieur()) {
 			etat = "dehors";
-			break;
 		}
 		return nom+" "+etat;
 	}
