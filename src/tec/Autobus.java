@@ -1,9 +1,9 @@
 package tec;
 
-public class Autobus implements Transport, Bus {
+public class Autobus implements Bus, Transport{
 	
-	public Autobus(int debout, int assis) {
-		// TODO Auto-generated constructor stub
+	public Autobus(int plcAss,int plcDeb) {
+		
 	}
 
 	@Override
