@@ -2,6 +2,9 @@ package tec;
 
 public class PassagerStandard implements Passager, Usager{
 
+	public PassagerStandard(String nom,int arret) {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public void monterDans(Transport t) throws UsagerInvalideException {
 		// TODO Auto-generated method stub

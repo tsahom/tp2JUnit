@@ -5,12 +5,6 @@ public class Autobus implements Bus, Transport{
 	public Autobus(int plcAss,int plcDeb) {
 		
 	}
-	
-	@Override
-	public void allerArretSuivant() throws UsagerInvalideException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean aPlaceAssise() {
@@ -50,6 +44,12 @@ public class Autobus implements Bus, Transport{
 
 	@Override
 	public void demanderSortie(Passager p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void allerArretSuivant() throws UsagerInvalideException {
 		// TODO Auto-generated method stub
 		
 	}
