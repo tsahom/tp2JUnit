@@ -1,13 +1,20 @@
 package tec;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Autobus implements Bus, Transport{
 	
 	private JaugeNaturel plcAss;
 	private JaugeNaturel plcDeb;
+	private List<Passager> passagers;
+	int numArret;
 	
 	public Autobus(int plcAss,int plcDeb) {
 		this.plcAss = new JaugeNaturel(0, plcAss, 0);
 		this.plcDeb = new JaugeNaturel(0, plcDeb, 0);
+		this.passagers = new ArrayList<Passager>(plcAss+plcDeb);
+		int numArret =0;
 	}
 
 	@Override
@@ -25,6 +32,8 @@ public class Autobus implements Bus, Transport{
 		if(this.aPlaceAssise()) {
 			this.plcAss.incrementer();
 			p.accepterPlaceAssise();
+			passagers.add(p);
+			
 		}
 	}
 
@@ -33,6 +42,8 @@ public class Autobus implements Bus, Transport{
 		if(this.aPlaceDebout()) {
 			this.plcDeb.incrementer();
 			p.accepterPlaceDebout();
+			passagers.add(p);
+			
 		}
 	}
 
@@ -57,14 +68,18 @@ public class Autobus implements Bus, Transport{
 
 	@Override
 	public void demanderSortie(Passager p) {
-
+		p.accepterSortie();
+		passagers.remove(p);
+	
 	}
 
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
-		// TODO Auto-generated method stub
-		
+		for(Passager p: passagers) {
+			p.nouvelArret(this,this.numArret);
+		}
 	}
+	
 	@Override
 	public String toString() {
 		return "Place assise :" + this.plcAss.toString() + "\n Place debout :" + this.plcDeb.toString();
