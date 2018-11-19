@@ -10,7 +10,6 @@
 import tec.Usager;
 import tec.Transport;
 import tec.UsagerInvalideException;
-
 import tec.PassagerStandard;
 import tec.Autobus;
 

@@ -17,7 +17,7 @@ package tec;
  * Si la demande est acceptée, le bus déclenche les modificateurs 
  * de passager.
  */
-interface Bus {
+public interface Bus {
 
   /**
    * vrai s'il existe des places assises.

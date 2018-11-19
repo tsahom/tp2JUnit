@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tec.Autobus;
 import tec.PassagerStandard;
-import tec.Transport;
 import tec.UsagerInvalideException;
 
 class PassagerStandardTest {
@@ -14,14 +14,16 @@ class PassagerStandardTest {
 	PassagerStandard debout;
 	PassagerStandard assis;
 	PassagerStandard dehors;
+	Autobus bus;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		debout = new PassagerStandard("Michel", 4);
+		debout = new PassagerStandard("Michel", 2);
 		debout.accepterPlaceDebout();
 		assis = new PassagerStandard("Suzie",3);
 		assis.accepterPlaceAssise();
-		dehors = new PassagerStandard("Luc", 5);
+		dehors = new PassagerStandard("Luc", 3);
+		bus = new Autobus(1,1);
 	}
 
 	@Test
@@ -79,12 +81,26 @@ class PassagerStandardTest {
 	
 	@Test
 	void testNouvelArret() {
-		fail("Not implemented yet");
+		assis.nouvelArret(bus, 2);
+		try {
+			bus.allerArretSuivant();
+		} catch (UsagerInvalideException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
 	void testMonterDans() {
-		fail("Not implemented yet");
+		try {
+			assis.monterDans(bus);
+			assertTrue(assis.estAssis());
+			debout.monterDans(bus);
+			assertTrue(dehors.estDebout());
+			dehors.monterDans(bus);
+			assertTrue(dehors.estDehors());
+		} catch (UsagerInvalideException e) {
+			fail("UsagerInvalideException");
+		}
 	}
 	
 	@Test
