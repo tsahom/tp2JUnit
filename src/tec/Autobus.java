@@ -1,6 +1,9 @@
 package tec;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assumptions.assumingThat;
+
 import java.util.ArrayList;
 
 public class Autobus implements Bus, Transport{
@@ -14,7 +17,7 @@ public class Autobus implements Bus, Transport{
 		this.plcAss = new JaugeNaturel(0, plcAss, 0);
 		this.plcDeb = new JaugeNaturel(0, plcDeb, 0);
 		this.passagers = new ArrayList<Passager>(plcAss+plcDeb);
-		int numArret =0;
+		this.numArret =0;
 	}
 
 	@Override
@@ -67,7 +70,15 @@ public class Autobus implements Bus, Transport{
 	}
 
 	@Override
-	public void demanderSortie(Passager p) {
+	public void demanderSortie(Passager p) throws UsagerInvalideException {
+		if(!this.passagers.contains(p)) {
+			throw new UsagerInvalideException("L'usager n'est pas présent dans le bus");
+		}
+		if(p.estAssis()) {
+			this.plcAss.decrementer();
+		}else {
+			this.plcDeb.decrementer();
+		}
 		p.accepterSortie();
 		passagers.remove(p);
 	
@@ -76,9 +87,13 @@ public class Autobus implements Bus, Transport{
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
 		this.numArret++;
-		for(Passager p: passagers) {
-			p.nouvelArret(this,this.numArret);
-		}
+		int previousSize;
+		do {
+			 previousSize = this.passagers.size(); 
+			for(int i = 0; i< this.passagers.size();i++) {
+				this.passagers.get(i).nouvelArret(this, this.numArret);
+			}
+		}while(previousSize != this.passagers.size());
 	}
 	
 	@Override

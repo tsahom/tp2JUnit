@@ -6,7 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tec.Autobus;
+import tec.Bus;
+import tec.FauxBusAssis;
+import tec.FauxBusDebout;
+import tec.FauxBusPlein;
+import tec.FauxBusVide;
 import tec.PassagerStandard;
+import tec.Transport;
 import tec.UsagerInvalideException;
 
 class PassagerStandardTest {
@@ -14,7 +20,10 @@ class PassagerStandardTest {
 	PassagerStandard debout;
 	PassagerStandard assis;
 	PassagerStandard dehors;
-	Autobus bus;
+	FauxBusAssis busAssis;
+	Transport busDebout;
+	Transport busVide;
+	Transport busPlein;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -23,7 +32,10 @@ class PassagerStandardTest {
 		assis = new PassagerStandard("Suzie",3);
 		assis.accepterPlaceAssise();
 		dehors = new PassagerStandard("Luc", 3);
-		bus = new Autobus(1,1);
+		busAssis = new FauxBusAssis();
+		busDebout = new FauxBusDebout();
+		busVide = new FauxBusVide();
+		busPlein = new FauxBusPlein();
 	}
 
 	@Test
@@ -80,16 +92,16 @@ class PassagerStandardTest {
 	}
 
 	@Test
-	void testNouvelArret() {
-		assis.nouvelArret(bus, 0);
+	void testNouvelArret() throws UsagerInvalideException {
+		assis.nouvelArret((Bus)busVide, 0);
 		assertTrue(assis.estAssis());
-		assis.nouvelArret(bus, 1);
+		assis.nouvelArret((Bus)busVide, 1);
 		assertTrue(assis.estAssis());
-		assis.nouvelArret(bus, 2);
+		assis.nouvelArret((Bus)busVide, 2);
 		assertTrue(assis.estAssis());
-		assis.nouvelArret(bus, 3);
+		assis.nouvelArret((Bus)busVide, 3);
 		assertTrue(assis.estDehors());
-		assis.nouvelArret(bus, 4);
+		assis.nouvelArret((Bus)busVide, 4);
 		assertTrue(assis.estDehors());
 	}
 
@@ -97,11 +109,11 @@ class PassagerStandardTest {
 	void testMonterDans() throws UsagerInvalideException{
 		assis.accepterSortie();
 		debout.accepterSortie();
-		assis.monterDans(bus);
+		assis.monterDans(busAssis);
 		assertTrue(assis.estAssis());
-		debout.monterDans(bus);
+		debout.monterDans(busDebout);
 		assertTrue(debout.estDebout());
-		dehors.monterDans(bus);
+		dehors.monterDans(busPlein);
 		assertTrue(dehors.estDehors());
 
 	}
