@@ -15,7 +15,7 @@ class PassagerStandardTest {
 	PassagerStandard assis;
 	PassagerStandard dehors;
 	Autobus bus;
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
 		debout = new PassagerStandard("Michel", 2);
@@ -36,14 +36,14 @@ class PassagerStandardTest {
 		assertNotEquals("Michel",dehors.nom());
 		assertNotEquals("Test",debout.nom());
 	}
-	
+
 	@Test
 	void testEstDehors() {
 		assertFalse(debout.estDehors());
 		assertFalse(assis.estDehors());
 		assertTrue(dehors.estDehors());
 	}
-	
+
 	@Test
 	void testEstAssis() {
 		assertFalse(debout.estAssis());
@@ -57,59 +57,60 @@ class PassagerStandardTest {
 		assertFalse(assis.estDebout());
 		assertFalse(dehors.estDebout());
 	}
-	
+
 	@Test
 	void testAccepterSortie() {
 		assertFalse(debout.estDehors());
 		debout.accepterSortie();
 		assertTrue(debout.estDehors());
 	}
-	
+
 	@Test
 	void testAccepterPlaceAssie() {
 		assertFalse(debout.estAssis());
 		debout.accepterPlaceAssise();
 		assertTrue(debout.estAssis());
 	}
-	
+
 	@Test
 	void testAccepterPlaceDebout() {
 		assertFalse(assis.estDebout());
 		assis.accepterPlaceDebout();
 		assertTrue(assis.estDebout());
 	}
-	
+
 	@Test
 	void testNouvelArret() {
+		assis.nouvelArret(bus, 0);
+		assertTrue(assis.estAssis());
+		assis.nouvelArret(bus, 1);
+		assertTrue(assis.estAssis());
 		assis.nouvelArret(bus, 2);
-		try {
-			bus.allerArretSuivant();
-			bus.allerArretSuivant();
-			assertTrue(assis.estDehors());
-		} catch (UsagerInvalideException e) {
-			e.printStackTrace();
-		}
+		assertTrue(assis.estAssis());
+		assis.nouvelArret(bus, 3);
+		assertTrue(assis.estDehors());
+		assis.nouvelArret(bus, 4);
+		assertTrue(assis.estDehors());
 	}
-	
+
 	@Test
-	void testMonterDans() {
-		try {
-			assis.monterDans(bus);
-			assertTrue(assis.estAssis());
-			debout.monterDans(bus);
-			assertTrue(dehors.estDebout());
-			dehors.monterDans(bus);
-			assertTrue(dehors.estDehors());
-		} catch (UsagerInvalideException e) {
-			fail("UsagerInvalideException");
-		}
+	void testMonterDans() throws UsagerInvalideException{
+		assis.accepterSortie();
+		debout.accepterSortie();
+		assis.monterDans(bus);
+		assertTrue(assis.estAssis());
+		debout.monterDans(bus);
+		assertTrue(debout.estDebout());
+		dehors.monterDans(bus);
+		assertTrue(dehors.estDehors());
+
 	}
-	
+
 	@Test
 	void testToString() {
 		assertEquals("Michel debout",debout.toString());
 		assertEquals("Suzie assis",assis.toString());
 		assertEquals("Luc dehors",dehors.toString());
 	}
-	
+
 }

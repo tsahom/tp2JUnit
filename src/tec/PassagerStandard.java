@@ -15,7 +15,6 @@ public class PassagerStandard implements Passager, Usager{
 	private EtatPassager et;
 
 	public PassagerStandard(String nom,int arret) {
-		// TODO Auto-generated constructor stub
 		this.nom=nom;
 		this.arret=arret;
 		et = new EtatPassager(Etat.DEHORS);
@@ -58,21 +57,17 @@ public class PassagerStandard implements Passager, Usager{
 
 	@Override
 	public void nouvelArret(Bus bus, int numeroArret) {
-		arret = numeroArret;
-		Transport t = (Transport)bus;
-		try {
-			this.monterDans(t);
-		} catch (UsagerInvalideException e) {
-			e.printStackTrace();
+		if(arret == numeroArret) {
+			accepterSortie();
 		}
 	}
 	
 	@Override
 	public void monterDans(Transport t) throws UsagerInvalideException {
 		Bus b = (Bus) t;
-		EtatPassager currentState = et;
+		EtatPassager current = et;
 		b.demanderPlaceAssise(this);
-		if(!currentState.equals(et)) {
+		if(et.toString().equals(current.toString())) {
 			b.demanderPlaceDebout(this);
 		}
 		
