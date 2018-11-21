@@ -84,6 +84,8 @@ class PassagerStandardTest {
 		assis.nouvelArret(bus, 2);
 		try {
 			bus.allerArretSuivant();
+			bus.allerArretSuivant();
+			assertTrue(assis.estDehors());
 		} catch (UsagerInvalideException e) {
 			e.printStackTrace();
 		}

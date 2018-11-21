@@ -64,7 +64,13 @@ public class PassagerStandard implements Passager, Usager{
 	
 	@Override
 	public void monterDans(Transport t) throws UsagerInvalideException {
+		Bus b = (Bus) t;
 		EtatPassager currentState = et;
+		b.demanderPlaceAssise(this);
+		if(!currentState.equals(et)) {
+			b.demanderPlaceDebout(this);
+		}
+		
 		
 	}
 	
