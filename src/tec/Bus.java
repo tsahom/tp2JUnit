@@ -38,6 +38,7 @@ public interface Bus {
    * @param p le passager
    */
   public void demanderPlaceAssise(Passager p);
+  
   /**
    * Le passager entre dans ce bus en demandant une place debout.
    * L'état du passager est forcément dehors.
