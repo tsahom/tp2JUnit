@@ -80,7 +80,7 @@ class PassagerStandardTest {
 	}
 
 	@Test
-	void testNouvelArret() {
+	void testNouvelArret() throws UsagerInvalideException {
 		assis.nouvelArret(bus, 0);
 		assertTrue(assis.estAssis());
 		assis.nouvelArret(bus, 1);

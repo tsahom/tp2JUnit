@@ -56,9 +56,9 @@ public class PassagerStandard implements Passager, Usager{
 	}
 
 	@Override
-	public void nouvelArret(Bus bus, int numeroArret) {
+	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException {
 		if(arret == numeroArret) {
-			accepterSortie();
+			bus.demanderSortie(this);
 		}
 	}
 	
