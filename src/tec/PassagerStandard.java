@@ -58,8 +58,13 @@ public class PassagerStandard implements Passager, Usager{
 
 	@Override
 	public void nouvelArret(Bus bus, int numeroArret) {
-		// TODO Auto-generated method stub
-		
+		arret = numeroArret;
+		Transport t = (Transport)bus;
+		try {
+			this.monterDans(t);
+		} catch (UsagerInvalideException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
