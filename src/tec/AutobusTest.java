@@ -70,7 +70,7 @@ class AutobusTest {
 	}
 	
 	@Test
-	void testDemanderSortie() {
+	void testDemanderSortie() throws UsagerInvalideException {
 		this.autoUnePlace.demanderPlaceDebout(pass1);
 		this.autoUnePlace.demanderSortie(pass1);
 		pass2.accepterSortie();

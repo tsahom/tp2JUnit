@@ -67,7 +67,8 @@ interface Bus {
    * Fait sortir un passager du bus.
    * Elle change l'état du passager.
    * @param p le passager avec un état soit assis soit debout.
+ * @throws UsagerInvalideException 
    */
-  public void demanderSortie(Passager p);
+  public void demanderSortie(Passager p) throws UsagerInvalideException;
 }
 
