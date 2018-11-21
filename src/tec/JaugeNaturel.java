@@ -90,6 +90,9 @@ public class JaugeNaturel implements Jauge {
 	  valeur--;
   }
 
+  public int getValeur() {
+	  return (int)this.valeur;
+  }
 
   /**
    * Cette méthode est héritée de la classe {@link java.lang.Object}.

@@ -75,6 +75,7 @@ public class Autobus implements Bus, Transport{
 
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
+		this.numArret++;
 		for(Passager p: passagers) {
 			p.nouvelArret(this,this.numArret);
 		}
@@ -82,7 +83,7 @@ public class Autobus implements Bus, Transport{
 	
 	@Override
 	public String toString() {
-		return "Place assise :" + this.plcAss.toString() + "\n Place debout :" + this.plcDeb.toString();
+		return "[arret:"+this.numArret+",assis:" + this.plcAss.getValeur() + ",debout:" + this.plcDeb.getValeur()+"]";
 	}
 
 }

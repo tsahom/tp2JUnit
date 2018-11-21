@@ -17,16 +17,21 @@ class AutobusTest {
 		pass2 = new FauxPassager();
 		autoUnePlace = new Autobus(1,1);
 	}
-	
+	/**
+	 * Test des accesseurs aPlaceAssise et aPlaceDebout dans en cas ou il devrait retourner vrai
+	 * 
+	 */
 	@Test
-	void constructeurTestCasStandart() {
+	void accesseursTestCasStandart() {
 		this.auto1 = new Autobus(20,20);
 		assertTrue(this.auto1.aPlaceAssise());
 		assertTrue(this.auto1.aPlaceDebout());
 	}
-	
+	/**
+	 * Test des accesseurs aPlaceAssise et aPlaceDebout dans en cas ou il devrait retourner faux (Bus plein)
+	 */
 	@Test
-	void constructeurTestcasVide() {
+	void accesseursTestcasVide(){
 		this.autoUnePlace.demanderPlaceAssise(pass1);
 		this.autoUnePlace.demanderPlaceDebout(pass2);
 		assertTrue(!this.autoUnePlace.aPlaceAssise());
