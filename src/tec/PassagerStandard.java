@@ -1,5 +1,11 @@
 package tec;
 
+import tec.Bus;
+import tec.EtatPassager;
+import tec.Passager;
+import tec.Transport;
+import tec.Usager;
+import tec.UsagerInvalideException;
 import tec.EtatPassager.Etat;
 
 public class PassagerStandard implements Passager, Usager{
@@ -16,8 +22,7 @@ public class PassagerStandard implements Passager, Usager{
 	}
 
 	@Override
-	public String nom() {
-		// TODO Auto-generated method stub
+	public String nom() {	
 		return nom;
 	}
 
@@ -53,13 +58,24 @@ public class PassagerStandard implements Passager, Usager{
 
 	@Override
 	public void nouvelArret(Bus bus, int numeroArret) {
-		// TODO Auto-generated method stub
-		
+		arret = numeroArret;
+		Transport t = (Transport)bus;
+		try {
+			this.monterDans(t);
+		} catch (UsagerInvalideException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public void monterDans(Transport t) throws UsagerInvalideException {
-		// TODO Auto-generated method stub
+		Bus b = (Bus) t;
+		EtatPassager currentState = et;
+		b.demanderPlaceAssise(this);
+		if(!currentState.equals(et)) {
+			b.demanderPlaceDebout(this);
+		}
+		
 		
 	}
 	

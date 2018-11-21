@@ -2,8 +2,7 @@ package tec;
 
 
 
-public class FauxPassager implements Passager{
-  
+public class FauxPassager { 
   static final byte DEHORS = 0;
   static final byte ASSIS  = 1;
   static final byte DEBOUT = 2;
@@ -15,31 +14,31 @@ public class FauxPassager implements Passager{
     return null;
   }
 
-  public boolean estDehors() {
+  boolean estDehors() {
     return status == DEHORS;
   }
   
-  public boolean estAssis() {
+  boolean estAssis() {
     return status == ASSIS;
   }
   
-  public boolean estDebout() {
+  boolean estDebout() {
     return status == DEBOUT;
   }
 
-  public void accepterSortie() {
+  void accepterSortie() {
     message = ":accepterSortie:";
   }
 
-  public void accepterPlaceAssise() {
+  void accepterPlaceAssise() {
     message = ":accepterPlaceAssise:";
   }
 
-  public void accepterPlaceDebout() {
+  void accepterPlaceDebout() {
     message = ":accepterPlaceDebout:";
   }
 
-  public void nouvelArret(Bus bus, int numeroArret) {
+  void nouvelArret(Bus bus, int numeroArret) {
     message = ":nouvelArret " + numeroArret + ":";
   }
 
