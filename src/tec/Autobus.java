@@ -67,7 +67,15 @@ public class Autobus implements Bus, Transport{
 	}
 
 	@Override
-	public void demanderSortie(Passager p) {
+	public void demanderSortie(Passager p) throws UsagerInvalideException {
+		if(!this.passagers.contains(p)) {
+			throw new UsagerInvalideException("L'usager n'est pas présent dans le bus");
+		}
+		if(p.estAssis()) {
+			this.plcAss.decrementer();
+		}else {
+			this.plcDeb.decrementer();
+		}
 		p.accepterSortie();
 		passagers.remove(p);
 	
