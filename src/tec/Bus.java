@@ -17,7 +17,7 @@ package tec;
  * Si la demande est acceptée, le bus déclenche les modificateurs 
  * de passager.
  */
-interface Bus {
+public interface Bus {
 
   /**
    * vrai s'il existe des places assises.
@@ -38,6 +38,7 @@ interface Bus {
    * @param p le passager
    */
   public void demanderPlaceAssise(Passager p);
+  
   /**
    * Le passager entre dans ce bus en demandant une place debout.
    * L'état du passager est forcément dehors.
@@ -66,7 +67,8 @@ interface Bus {
    * Fait sortir un passager du bus.
    * Elle change l'état du passager.
    * @param p le passager avec un état soit assis soit debout.
+ * @throws UsagerInvalideException 
    */
-  public void demanderSortie(Passager p);
+  public void demanderSortie(Passager p) throws UsagerInvalideException;
 }
 
