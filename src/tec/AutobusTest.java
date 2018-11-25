@@ -10,7 +10,8 @@ class AutobusTest {
 
 	public Autobus auto1, auto2, autoUnePlace;
 	public FauxPassager pass1, pass2, pass3,pass4;
-		
+	
+	
 	@BeforeEach
 	public  void setUp(){
 		pass1 = new FauxPassager();

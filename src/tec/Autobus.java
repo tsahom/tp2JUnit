@@ -18,6 +18,9 @@ public class Autobus implements Bus, Transport{
 		this.numArret =0;
 	}
 
+	public Autobus(int nbPlace) {
+		this(nbPlace, nbPlace);
+	}
 	@Override
 	public boolean aPlaceAssise() {
 		return !this.plcAss.estRouge();
