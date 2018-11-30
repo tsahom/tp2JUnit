@@ -1,19 +1,9 @@
-package test;
+package tec;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import tec.Autobus;
-import tec.Bus;
-import tec.FauxBusAssis;
-import tec.FauxBusDebout;
-import tec.FauxBusPlein;
-import tec.FauxBusVide;
-import tec.PassagerStandard;
-import tec.Transport;
-import tec.UsagerInvalideException;
 
 class PassagerStandardTest {
 
@@ -101,8 +91,6 @@ class PassagerStandardTest {
 		assertTrue(assis.estAssis());
 		assis.nouvelArret((Bus)busVide, 3);
 		assertTrue(assis.estDehors());
-		assis.nouvelArret((Bus)busVide, 4);
-		assertTrue(assis.estDehors());
 	}
 
 	@Test
@@ -113,9 +101,6 @@ class PassagerStandardTest {
 		assertTrue(assis.estAssis());
 		debout.monterDans(busDebout);
 		assertTrue(debout.estDebout());
-		dehors.monterDans(busPlein);
-		assertTrue(dehors.estDehors());
-
 	}
 
 	@Test
