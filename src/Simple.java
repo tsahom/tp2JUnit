@@ -10,9 +10,9 @@
 import tec.Usager;
 import tec.Transport;
 import tec.UsagerInvalideException;
-
 import tec.PassagerStandard;
 import tec.Autobus;
+import tec.Bus;
 
 /*
  * Exemple de programme principale avec trois PassagerStandard et un Autobus.

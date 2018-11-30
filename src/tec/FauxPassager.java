@@ -2,8 +2,7 @@ package tec;
 
 
 
-public class FauxPassager implements Passager{
-  
+public class FauxPassager implements Passager{ 
   static final byte DEHORS = 0;
   static final byte ASSIS  = 1;
   static final byte DEBOUT = 2;
