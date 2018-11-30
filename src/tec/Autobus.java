@@ -2,8 +2,6 @@ package tec;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assumptions.assumingThat;
-
 import java.util.ArrayList;
 
 public class Autobus implements Bus, Transport{
@@ -20,6 +18,9 @@ public class Autobus implements Bus, Transport{
 		this.numArret =0;
 	}
 
+	public Autobus(int nbPlace) {
+		this(nbPlace, nbPlace);
+	}
 	@Override
 	public boolean aPlaceAssise() {
 		return !this.plcAss.estRouge();
@@ -61,7 +62,7 @@ public class Autobus implements Bus, Transport{
 	}
 
 	@Override
-	public void demanderChangerEnAssis(Passager p) {
+	public void demanderChangerEnAssis(Passager p){
 		if(this.aPlaceAssise()) {
 			this.plcAss.incrementer();
 			this.plcDeb.decrementer();
