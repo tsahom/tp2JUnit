@@ -14,32 +14,27 @@ public class PassagerStandard extends PassagerAbstrait implements Passager, Usag
 		super(nom,arret);
 	}
 
-	@Override
-	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException {
-		if(arret<numeroArret){
-			throw new UsagerInvalideException("Le transport a depasser l'arret de l'usager",(Usager)this,(Transport)bus);
+	
+	
+	public void choixChangerPlace(Bus b, int arret) throws UsagerInvalideException {
+			
+		if(arret<arret){
+			throw new UsagerInvalideException("Le transport a depasser l'arret de l'usager",(Usager)this,(Transport)b);
 		}
-		if(arret == numeroArret) {
-			bus.demanderSortie(this);
+		if(arret == arret) {
+			b.demanderSortie(this);
 		}
 	}
-	
-	@Override
-	public void monterDans(Transport t) throws UsagerInvalideException {
-		if(!this.estDehors()) {
-			throw new IllegalStateException();
-		}
-		Bus b = (Bus) t;
+
+	public void choixPlaceMontee(Bus b) throws UsagerInvalideException {
 		EtatPassager current = et;
 		b.demanderPlaceAssise(this);
 		if(et.toString().equals(current.toString())) {
 			b.demanderPlaceDebout(this);
 			if(et.toString().equals(current.toString())) {
-				throw new UsagerInvalideException("L'usager n'a pu rentrer dans le transport",(Usager)this,t);
+				throw new UsagerInvalideException("L'usager n'a pu rentrer dans le transport",(Usager)this,(Transport)b);
 			}
 		}
-		
-		
 	}
 
 }
