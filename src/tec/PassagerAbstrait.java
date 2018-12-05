@@ -16,61 +16,68 @@ public abstract class PassagerAbstrait implements Passager, Usager {
 	}
 
 	@Override
-	public String nom() {	
+	public final String nom() {	
 		return nom;
 	}
 
 	@Override
-	public boolean estDehors() {	
+	public final boolean estDehors() {	
 		return et.estExterieur();
 	}
 
 	@Override
-	public boolean estAssis() {
+	public final boolean estAssis() {
 		return et.estAssis();
 	}
 
 	@Override
-	public boolean estDebout() {
+	public final boolean estDebout() {
 		return et.estDebout();
 	}
 
 	@Override
-	public void accepterSortie() {
+	public final void accepterSortie() {
 		et = new EtatPassager(Etat.DEHORS);
 	}
 
 	@Override
-	public void accepterPlaceAssise() {
+	public final void accepterPlaceAssise() {
 		et = new EtatPassager(Etat.ASSIS);
 	}
 
 	@Override
-	public void accepterPlaceDebout() {
+	public final void accepterPlaceDebout() {
 		et = new EtatPassager(Etat.DEBOUT);
 	}
 
 	@Override
-	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException{
-		this.choixChangerPlace(bus, numeroArret);
+	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException {
+		if(arret<numeroArret){
+			throw new UsagerInvalideException("Le transport a depasser l'arret de l'usager",(Usager)this,(Transport)bus);
+		}
+		choixChangerPlace(bus, numeroArret);
 	}
 	
 	@Override
-	public void monterDans(Transport t) throws UsagerInvalideException{
+	public void monterDans(Transport t) throws UsagerInvalideException {
+		if(!this.estDehors()) {
+			throw new IllegalStateException();
+		}
 		Bus b = (Bus) t;
-		this.choixPlaceMontee(b);
+		EtatPassager current = et;
+		choixPlaceMontee(b);
+		if(et.toString().equals(current.toString())) {
+			throw new UsagerInvalideException("L'usager n'a pu rentrer dans le transport",(Usager)this,t	);
+		}
+		
 	}
-	
-	public abstract void choixChangerPlace(Bus b, int arret) throws UsagerInvalideException;
-
 	
 	public abstract void choixPlaceMontee(Bus b) throws UsagerInvalideException;
 	
-	
-	
+	public abstract void choixChangerPlace(Bus b, int arret) throws UsagerInvalideException;
 	
 	@Override
-	public String toString() {
+	public final String toString() {
 		String etat ="";
 		
 		if(et.estAssis()) {
