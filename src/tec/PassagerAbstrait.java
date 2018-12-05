@@ -7,6 +7,7 @@ public abstract class PassagerAbstrait implements Passager, Usager {
 	private String nom;
 	protected int arret;
 	protected EtatPassager et;
+	 
 	
 	public PassagerAbstrait(String nom,int arret) {
 		this.nom=nom;
@@ -50,10 +51,23 @@ public abstract class PassagerAbstrait implements Passager, Usager {
 	}
 
 	@Override
-	public abstract void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException;
+	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException{
+		this.choixChangerPlace(bus, numeroArret);
+	}
 	
 	@Override
-	public abstract void monterDans(Transport t) throws UsagerInvalideException;
+	public void monterDans(Transport t) throws UsagerInvalideException{
+		Bus b = (Bus) t;
+		this.choixPlaceMontee(b);
+	}
+	
+	public abstract void choixChangerPlace(Bus b, int arret) throws UsagerInvalideException;
+
+	
+	public abstract void choixPlaceMontee(Bus b) throws UsagerInvalideException;
+	
+	
+	
 	
 	@Override
 	public String toString() {
