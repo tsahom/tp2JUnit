@@ -14,15 +14,12 @@ public final class PassagerStandard extends PassagerAbstrait implements Passager
 		super(nom,arret);
 	}
 
-	@Override
 	public void choixChangerPlace(Bus b, int arret) throws UsagerInvalideException {
 		if(this.arret == arret) {
 			b.demanderSortie(this);
 		}
-		
 	}
 
-	@Override
 	public void choixPlaceMontee(Bus b) throws UsagerInvalideException {
 		EtatPassager current = et;
 		b.demanderPlaceAssise(this);
