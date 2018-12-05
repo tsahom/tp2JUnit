@@ -70,5 +70,9 @@ public abstract class PassagerAbstraitTest {
 		assertTrue(assis.estDebout());
 	}
 	
+	abstract void testNouvelArret() throws UsagerInvalideException;
+	
+	abstract void testMonterDans() throws UsagerInvalideException;
+	
 
 }
