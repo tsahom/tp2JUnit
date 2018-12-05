@@ -20,7 +20,7 @@ public abstract class PassagerAbstrait implements Passager, Usager {
 	}
 
 	@Override
-	public boolean estDehors() {	
+	public boolean estDehors() {
 		return et.estExterieur();
 	}
 

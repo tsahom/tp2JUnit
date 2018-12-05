@@ -1,6 +1,6 @@
 package tec;
 
-public class PassagerLunatique extends PassagerAbstrait{
+public final class PassagerLunatique extends PassagerAbstrait{
 
 	public PassagerLunatique(String nom,int arret) {
 		super(nom, arret);
