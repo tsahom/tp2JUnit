@@ -21,6 +21,7 @@ public abstract class PassagerAbstrait implements Passager, Usager {
 	}
 
 	@Override
+
 	public final boolean estDehors() {	
 		return et.estExterieur();
 	}
