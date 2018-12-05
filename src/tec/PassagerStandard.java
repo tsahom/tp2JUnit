@@ -28,6 +28,9 @@ public final class PassagerStandard extends PassagerAbstrait implements Passager
 		b.demanderPlaceAssise(this);
 		if(et.toString().equals(current.toString())) {
 			b.demanderPlaceDebout(this);
+			if(et.toString().equals(current.toString())) {
+				throw new UsagerInvalideException("L'usager n'a pu rentrer dans le transport",(Usager)this,(Transport)b);
+			}
 		}
 	}
 

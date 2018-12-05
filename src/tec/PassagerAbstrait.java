@@ -7,6 +7,7 @@ public abstract class PassagerAbstrait implements Passager, Usager {
 	private String nom;
 	protected int arret;
 	protected EtatPassager et;
+	 
 	
 	public PassagerAbstrait(String nom,int arret) {
 		this.nom=nom;
