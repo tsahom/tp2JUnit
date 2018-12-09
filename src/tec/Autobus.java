@@ -84,7 +84,9 @@ public class Autobus implements Bus, Transport{
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
 		this.numArret++;
-		for(Passager p: passagers) {
+		List<Passager> listinitPassagers = new ArrayList<>();
+		listinitPassagers.addAll(passagers);
+		for(Passager p: listinitPassagers) {
 			p.nouvelArret(this,this.numArret);
 		}
 	}
