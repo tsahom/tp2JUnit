@@ -41,5 +41,7 @@ class PassagerStresseTest extends PassagerAbstraitTest {
 		debout.monterDans(busDebout);
 		assertTrue(debout.estDehors());
 	}
+	
+
 
 }
