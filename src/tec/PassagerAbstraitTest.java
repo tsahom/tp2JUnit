@@ -70,6 +70,13 @@ public abstract class PassagerAbstraitTest {
 		assertTrue(assis.estDebout());
 	}
 	
+	@Test
+	void testToString() {
+		assertEquals("Michel debout",debout.toString());
+		assertEquals("Suzie assis",assis.toString());
+		assertEquals("Luc dehors",dehors.toString());
+	}
+	
 	abstract void testNouvelArret() throws UsagerInvalideException;
 	
 	abstract void testMonterDans() throws UsagerInvalideException;

@@ -42,11 +42,6 @@ class PassagerStandardTest extends PassagerAbstraitTest{
 		assertTrue(debout.estDebout());
 	}
 
-	@Test
-	void testToString() {
-		assertEquals("Michel debout",debout.toString());
-		assertEquals("Suzie assis",assis.toString());
-		assertEquals("Luc dehors",dehors.toString());
-	}
+
 
 }
